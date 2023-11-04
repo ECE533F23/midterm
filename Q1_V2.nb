@@ -1,0 +1,468 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20555,        458]
+NotebookOptionsPosition[     19361,        435]
+NotebookOutlinePosition[     19748,        451]
+CellTagsIndexPosition[     19705,        448]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\</home/flash/Documents/ECE 533/midterm/originalImages\>\"", "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.9079675413856707`*^9, 3.9079675715772004`*^9}, {
+   3.9079729750782375`*^9, 3.9079729780021877`*^9}, {3.907980727916217*^9, 
+   3.907980730830634*^9}, {3.907980954226137*^9, 3.907981017730834*^9}, {
+   3.907981056863387*^9, 3.907981061630085*^9}, {3.907982929642549*^9, 
+   3.9079829687910023`*^9}, 3.9079830117516947`*^9, {3.907983051716886*^9, 
+   3.9079831049052258`*^9}, {3.9080149501763067`*^9, 
+   3.9080149785795183`*^9}, {3.908015009975177*^9, 3.908015026725779*^9}, {
+   3.908033655284227*^9, 3.908033684577784*^9}, {3.908036174512951*^9, 
+   3.908036219146633*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"b791cc52-87b8-4e04-bb36-a66f6be56f6a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"fileNames", "=", 
+   RowBox[{"Table", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"ToString", "[", "i", "]"}], "<>", "\"\<.tif\>\""}], ",", 
+     RowBox[{"{", 
+      RowBox[{"i", ",", "1", ",", "10"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"importedImages", "=", 
+   RowBox[{"Import", "/@", "fileNames"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.9079675413856707`*^9, 3.9079675715772004`*^9}, {
+   3.9079729750782375`*^9, 3.9079729780021877`*^9}, {3.907980727916217*^9, 
+   3.907980730830634*^9}, {3.907980954226137*^9, 3.907981017730834*^9}, {
+   3.907981056863387*^9, 3.907981061630085*^9}, {3.907982929642549*^9, 
+   3.9079829687910023`*^9}, 3.9079830117516947`*^9, {3.907983051716886*^9, 
+   3.907983075512157*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"4195ac73-3dd0-4769-8de2-c3d077a6f8c8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"preprocess2", "[", "image_", "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+     "erosionElement", ",", "\[IndentingNewLine]", "closingElement", ",", 
+      "\[IndentingNewLine]", "binarizeValue", ",", "\[IndentingNewLine]", 
+      "wienerFilterValue", ",", "\[IndentingNewLine]", "cleanedImage"}], 
+     "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
+    "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"erosionElement", " ", "=", " ", 
+      RowBox[{"DiskMatrix", "[", "2", "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"binarizeValue", " ", "=", " ", "0.1"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"wienerFilterValue", " ", "=", " ", "20"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"cleanedImage", " ", "=", " ", 
+      RowBox[{"Erosion", "[", 
+       RowBox[{
+        RowBox[{"WienerFilter", "[", 
+         RowBox[{
+          RowBox[{"Binarize", "[", 
+           RowBox[{"image", ",", 
+            RowBox[{"{", 
+             RowBox[{"binarizeValue", ",", "1"}], "}"}]}], "]"}], ",", 
+          "wienerFilterValue"}], "]"}], ",", "erosionElement"}], "]"}]}], ";",
+      "\[IndentingNewLine]", "cleanedImage"}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.907497282429139*^9, 3.9074974183323236`*^9}, 
+   3.9074975027949643`*^9, {3.907497574307724*^9, 3.9074976256374493`*^9}, {
+   3.907497666754507*^9, 3.907497694330406*^9}, {3.907498309641627*^9, 
+   3.9074983131681733`*^9}, {3.9074994931249905`*^9, 
+   3.9074994996918945`*^9}, {3.907499559716696*^9, 3.90749956571595*^9}, {
+   3.907499596404792*^9, 3.9074996733722525`*^9}, {3.907499940018535*^9, 
+   3.9074999407788744`*^9}, {3.907505772737178*^9, 3.907505778509059*^9}, {
+   3.907969236243603*^9, 3.9079693018347607`*^9}, {3.9079693353150315`*^9, 
+   3.907969370858656*^9}, {3.907969940401497*^9, 3.907969974912518*^9}, {
+   3.907970428223071*^9, 3.9079704759268*^9}, {3.907972695447585*^9, 
+   3.9079727169270363`*^9}, 3.907972875430563*^9, {3.9079730768148675`*^9, 
+   3.9079731433335032`*^9}, {3.907973230094039*^9, 3.907973230981279*^9}, 
+   3.907980453892168*^9, 3.908053984860952*^9},
+ CellLabel->"In[19]:=",ExpressionUUID->"20272ee9-488e-4ae0-ae23-c7addc08d98f"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"cornPics", " ", "=", " ", 
+   RowBox[{"preprocess2", "/@", "importedImages"}]}], ";"}]], "Input",
+ CellChangeTimes->{
+  3.9079809636094427`*^9, {3.907981039935851*^9, 3.907981051573504*^9}, {
+   3.9080537793932657`*^9, 3.908053785616316*^9}, {3.908053920639903*^9, 
+   3.908053930959957*^9}, {3.908053986577711*^9, 3.908054012792466*^9}},
+ CellLabel->"In[13]:=",ExpressionUUID->"218700b3-95d0-4540-94c5-78c7c40a3cca"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"extractOutliers", "[", "image_", "]"}], ":=", 
+  RowBox[{"Module", "[", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"{", "\[IndentingNewLine]", 
+     RowBox[{
+     "cleanedImage", ",", "\[IndentingNewLine]", "outliers", ",", 
+      "\[IndentingNewLine]", "largeOutlierThreshold", ",", 
+      "\[IndentingNewLine]", "smallOutlierThreshold", ",", 
+      "\[IndentingNewLine]", "morphComponents", ",", "\[IndentingNewLine]", 
+      "morphComponentDict", ",", "\[IndentingNewLine]", "morphComponentAreas",
+       ",", "\[IndentingNewLine]", "medianArea"}], "\[IndentingNewLine]", 
+     "}"}], ",", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"cleanedImage", " ", "=", " ", 
+      RowBox[{"preprocess2", "[", "image", "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"outliers", " ", "=", " ", 
+      RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"largeOutlierThreshold", " ", "=", " ", "1.5"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"smallOutlierThreshold", " ", "=", " ", "0.5"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"morphComponents", " ", "=", " ", 
+      RowBox[{"MorphologicalComponents", "[", 
+       RowBox[{"cleanedImage", ",", 
+        RowBox[{"Method", "->", "\"\<Convex\>\""}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"morphComponentDict", " ", "=", " ", 
+      RowBox[{"Tally", "[", 
+       RowBox[{"Flatten", "[", "morphComponents", "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"morphComponentAreas", " ", "=", " ", 
+      RowBox[{"morphComponentDict", "[", 
+       RowBox[{"[", 
+        RowBox[{
+         RowBox[{"2", ";;"}], " ", ",", "2"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"medianArea", " ", "=", " ", 
+      RowBox[{"Median", "[", "morphComponentAreas", "]"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "if", " ", "any", " ", "pixel", " ", "area", " ", "is", " ", 
+        "significiantly", " ", "smaller", " ", "than", " ", "the", " ", 
+        "median"}], ",", " ", 
+       RowBox[{
+       "it", " ", "is", " ", "not", " ", "a", " ", "full", " ", "kernel"}]}], 
+      " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "2"}], ",", " ", 
+       RowBox[{"i", "<=", 
+        RowBox[{"Length", "[", "morphComponentDict", "]"}]}], ",", 
+       RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"morphComponentDict", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "2"}], "]"}], "]"}], "<", 
+           RowBox[{"smallOutlierThreshold", "*", "medianArea"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"outliers", ",", "\[IndentingNewLine]", 
+            RowBox[{"Append", "[", 
+             RowBox[{
+              RowBox[{"morphComponentDict", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"Round", "[", 
+               RowBox[{
+                RowBox[{"morphComponentDict", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "2"}], "]"}], "]"}], "/", "medianArea"}], 
+               "]"}]}], "]"}]}], "\[IndentingNewLine]", "]"}]}], "\n", "\t", 
+         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "If", " ", "any", " ", "pixel", " ", "area", " ", "is", " ", 
+        "significantly", " ", "larger", " ", "than", " ", "the", " ", 
+        "median"}], ",", " ", 
+       RowBox[{
+       "it", " ", "represents", " ", "a", " ", "joint", " ", "kernel"}]}], 
+      " ", "*)"}], "\[IndentingNewLine]", 
+     RowBox[{"(*", " ", 
+      RowBox[{
+       RowBox[{
+       "This", " ", "code", " ", "appends", " ", "to", " ", 
+        "\"\<outliers\>\"", " ", "the", " ", "index", " ", "of", " ", "the", 
+        " ", "outlier"}], ",", " ", 
+       RowBox[{
+       "the", " ", "pixel", " ", "area", " ", "of", " ", "the", " ", 
+        "detected", " ", "outlier"}], ",", " ", 
+       RowBox[{
+       "and", " ", "the", " ", "closest", " ", "integer", " ", "multiple", 
+        " ", "of", " ", "the", " ", "median", " ", "for", " ", "that", " ", 
+        "area"}]}], " ", "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"For", "[", 
+      RowBox[{
+       RowBox[{"i", "=", "2"}], ",", " ", 
+       RowBox[{"i", "<=", 
+        RowBox[{"Length", "[", "morphComponentDict", "]"}]}], ",", 
+       RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"morphComponentDict", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "2"}], "]"}], "]"}], ">", 
+           RowBox[{"largeOutlierThreshold", "*", "medianArea"}]}], ",", 
+          "\[IndentingNewLine]", 
+          RowBox[{"AppendTo", "[", 
+           RowBox[{"outliers", ",", "\[IndentingNewLine]", 
+            RowBox[{"Append", "[", 
+             RowBox[{
+              RowBox[{"morphComponentDict", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"Round", "[", 
+               RowBox[{
+                RowBox[{"morphComponentDict", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"i", ",", "2"}], "]"}], "]"}], "/", "medianArea"}], 
+               "]"}]}], "]"}]}], "\[IndentingNewLine]", "]"}]}], "\n", "\t", 
+         "]"}], ";"}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"morphComponentAreas", ",", "outliers", ",", "medianArea"}], 
+      "}"}]}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.9074205857690597`*^9, 3.9074207045484457`*^9}, {
+   3.907420776044039*^9, 3.907420824435561*^9}, {3.9074208984117785`*^9, 
+   3.9074208984764843`*^9}, 3.9074209502041445`*^9, {3.9074209833880577`*^9, 
+   3.9074210980357494`*^9}, {3.9074211414674826`*^9, 
+   3.9074212175145607`*^9}, {3.9074212986591034`*^9, 
+   3.9074213698350058`*^9}, {3.9074970382295256`*^9, 3.907497038397202*^9}, {
+   3.9074971098532095`*^9, 3.907497216651952*^9}, {3.9074978956897497`*^9, 
+   3.9074978993377934`*^9}, {3.9074995809648128`*^9, 
+   3.9074995812443657`*^9}, {3.907499630843693*^9, 3.9074997447882385`*^9}, {
+   3.907499851795673*^9, 3.907499866914911*^9}, {3.9074998993879766`*^9, 
+   3.9074999044031878`*^9}, {3.9074999515395317`*^9, 
+   3.9075000108271403`*^9}, {3.9075004505857005`*^9, 
+   3.9075006371206446`*^9}, {3.9075060647741747`*^9, 3.907506079862347*^9}, {
+   3.907506410124518*^9, 3.907506431141051*^9}, {3.907506725628002*^9, 
+   3.907506729451825*^9}, {3.907922628550261*^9, 3.907922674130754*^9}, {
+   3.9079675876739583`*^9, 3.9079676815376587`*^9}, {3.9079705731115713`*^9, 
+   3.9079707433587694`*^9}, {3.9079708868298388`*^9, 
+   3.9079709313422785`*^9}, {3.9079710919027615`*^9, 3.907971099517866*^9}, {
+   3.9079721174185367`*^9, 3.9079721206573167`*^9}, {3.907972174218931*^9, 
+   3.9079722135534415`*^9}, {3.9079722748257256`*^9, 
+   3.9079722749057765`*^9}, {3.9079728657596135`*^9, 3.9079728827592163`*^9}, 
+   3.907972999487133*^9, {3.90797315550266*^9, 3.9079732017739077`*^9}, {
+   3.907981699936904*^9, 3.907981701655525*^9}, 3.9079849707842293`*^9, 
+   3.908054120541356*^9},
+ CellLabel->"In[20]:=",ExpressionUUID->"2ecc3242-23ce-4796-8040-0f1ab586a12e"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"maskSmallAreas", "[", "image_", "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "cleanedImage", ",", "outliers", ",", "smallOutliers", ",", 
+        "morphComponents", ",", "maskedImageData", ",", "morphComponentAreas",
+         ",", "medianArea"}], "}"}], ",", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Use", " ", "the", " ", "provided", " ", "function", " ", "to", " ", 
+        "get", " ", "the", " ", "outliers", " ", "and", " ", "median", " ", 
+        "area"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"morphComponentAreas", ",", "outliers", ",", "medianArea"}], 
+         "}"}], "=", 
+        RowBox[{"extractOutliers", "[", "image", "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Extract", " ", "only", " ", "small", " ", "outliers", " ", "based", 
+         " ", "on", " ", "the", " ", "area", " ", "compared", " ", "to", " ", 
+         "the", " ", "median"}], "*)"}], "\[IndentingNewLine]", 
+       RowBox[{"smallOutliers", "=", 
+        RowBox[{
+         RowBox[{"Select", "[", 
+          RowBox[{"outliers", ",", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"#", "[", 
+              RowBox[{"[", "2", "]"}], "]"}], "<", 
+             RowBox[{"(", 
+              RowBox[{"medianArea", "/", "3"}], ")"}]}], "&"}]}], "]"}], "[", 
+         
+         RowBox[{"[", 
+          RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Get", " ", "the", " ", "morphological", " ", "components", " ", "of",
+          " ", "the", " ", "cleaned", " ", "image"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"cleanedImage", "=", 
+        RowBox[{"preprocess2", "[", "image", "]"}]}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"morphComponents", "=", 
+        RowBox[{"MorphologicalComponents", "[", 
+         RowBox[{"cleanedImage", ",", 
+          RowBox[{"Method", "->", "\"\<Convex\>\""}]}], "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Initialize", " ", "the", " ", "masked", " ", "image", " ", "data", 
+         " ", "as", " ", "a", " ", "copy", " ", "of", " ", "the", " ", 
+         "original", " ", "image", " ", "data"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"maskedImageData", "=", 
+        RowBox[{"ImageData", "[", "cleanedImage", "]"}]}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{
+        "Iterate", " ", "over", " ", "small", " ", "outliers", " ", "and", 
+         " ", "set", " ", "their", " ", "pixels", " ", "to", " ", "0", " ", 
+         RowBox[{"(", "black", ")"}]}], "*)"}], 
+       RowBox[{"Do", "[", 
+        RowBox[{
+         RowBox[{"maskedImageData", "=", 
+          RowBox[{"ReplacePart", "[", 
+           RowBox[{"maskedImageData", ",", 
+            RowBox[{
+             RowBox[{"Position", "[", 
+              RowBox[{"morphComponents", ",", "outlier"}], "]"}], "->", 
+             "0"}]}], "]"}]}], ",", 
+         RowBox[{"{", 
+          RowBox[{"outlier", ",", "smallOutliers"}], "}"}]}], "]"}], ";", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{"(*", 
+        RowBox[{"Return", " ", "the", " ", "masked", " ", "image"}], "*)"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"Image", "[", "maskedImageData", "]"}]}]}], "]"}]}], ";"}], 
+  "\n"}]], "Input",
+ CellChangeTimes->{{3.9079850592601023`*^9, 3.907985059260827*^9}, 
+   3.907985296232812*^9, {3.907986102946106*^9, 3.907986142953679*^9}, 
+   3.907986184419201*^9, {3.9080140566736307`*^9, 3.908014087167018*^9}, {
+   3.908014920137589*^9, 3.908014926210425*^9}, {3.9080210555163527`*^9, 
+   3.908021056847496*^9}, 3.908054124768105*^9},
+ CellLabel->"In[21]:=",ExpressionUUID->"1ee0df6c-c7ad-4112-9540-cacb2ff19cc8"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"filtCornPics", " ", "=", 
+   RowBox[{"maskSmallAreas", "/@", " ", "cornPics"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.908053798515359*^9, 3.908053825851042*^9}, 
+   3.908054028816587*^9},
+ CellLabel->"In[22]:=",ExpressionUUID->"57a9eb4e-f136-4cd2-b0b2-375a9716b98e"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"cornTemp0", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Erosion", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"DiskMatrix", "[", "20", "]"}]}], "]"}], "&"}], "/@", 
+    "filtCornPics"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"cornTemp1", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Opening", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"DiskMatrix", "[", "20", "]"}]}], "]"}], "&"}], "/@", 
+    "cornTemp0"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.908051198069829*^9, 3.908051210763529*^9}, {
+  3.908051251782997*^9, 3.90805127249317*^9}, {3.9080514158367977`*^9, 
+  3.908051470442111*^9}, {3.908051511732479*^9, 3.908051541189423*^9}, {
+  3.908051641416605*^9, 3.908051642936784*^9}, {3.908051673591119*^9, 
+  3.908051694220642*^9}, {3.908051736138188*^9, 3.9080518494615726`*^9}, {
+  3.9080518948021173`*^9, 3.9080519421316223`*^9}, {3.9080546985957336`*^9, 
+  3.908054718261166*^9}, {3.908054756806364*^9, 3.908054758813157*^9}, {
+  3.9080551202568703`*^9, 3.908055122128779*^9}, {3.908055195972114*^9, 
+  3.90805519822828*^9}},
+ CellLabel->"In[34]:=",ExpressionUUID->"d8fdce6e-69c6-433b-ac5a-4a578275a85d"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"CountWhiteAreas", "[", "image_", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "components", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Assuming", " ", "white", " ", "areas", " ", "are", " ", "the", " ", 
+       "foreground"}], "*)"}], 
+     RowBox[{
+      RowBox[{"components", "=", 
+       RowBox[{"MorphologicalComponents", "[", "image", "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Max", "[", "components", "]"}]}]}], " ", 
+    RowBox[{"(*", 
+     RowBox[{
+     "This", " ", "gives", " ", "the", " ", "number", " ", "of", " ", "white",
+       " ", "areas"}], "*)"}], "]"}]}], "\n"}]], "Input",
+ CellChangeTimes->{{3.908055004538162*^9, 3.908055004539818*^9}, {
+  3.908055036309177*^9, 3.908055046048895*^9}},
+ CellLabel->"In[25]:=",ExpressionUUID->"0fbfcdbc-40f7-48db-bb5d-3da78e2d4af0"],
+
+Cell[BoxData[
+ RowBox[{"numberOfWhiteAreas", "=", 
+  RowBox[{"CountWhiteAreas", "/@", "cornTemp1"}]}]], "Input",
+ CellChangeTimes->{{3.908055021854541*^9, 3.90805502915292*^9}},
+ CellLabel->"In[36]:=",ExpressionUUID->"960e9fdb-768d-4a50-ad56-85adee623914"]
+},
+WindowSize->{693, 762},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"13.3 for Linux x86 (64-bit) (June 3, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"150932aa-7949-4a8d-ab66-ea9c558748ff"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 828, 15, 31, "Input",ExpressionUUID->"b791cc52-87b8-4e04-bb36-a66f6be56f6a"],
+Cell[1389, 37, 872, 19, 50, "Input",ExpressionUUID->"4195ac73-3dd0-4769-8de2-c3d077a6f8c8"],
+Cell[2264, 58, 2310, 44, 354, "Input",ExpressionUUID->"20272ee9-488e-4ae0-ae23-c7addc08d98f"],
+Cell[4577, 104, 452, 8, 29, "Input",ExpressionUUID->"218700b3-95d0-4540-94c5-78c7c40a3cca"],
+Cell[5032, 114, 7591, 159, 1047, "Input",ExpressionUUID->"2ecc3242-23ce-4796-8040-0f1ab586a12e"],
+Cell[12626, 275, 4054, 92, 515, "Input",ExpressionUUID->"1ee0df6c-c7ad-4112-9540-cacb2ff19cc8"],
+Cell[16683, 369, 304, 6, 29, "Input",ExpressionUUID->"57a9eb4e-f136-4cd2-b0b2-375a9716b98e"],
+Cell[16990, 377, 1191, 26, 50, "Input",ExpressionUUID->"d8fdce6e-69c6-433b-ac5a-4a578275a85d"],
+Cell[18184, 405, 914, 22, 114, "Input",ExpressionUUID->"0fbfcdbc-40f7-48db-bb5d-3da78e2d4af0"],
+Cell[19101, 429, 256, 4, 29, "Input",ExpressionUUID->"960e9fdb-768d-4a50-ad56-85adee623914"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
